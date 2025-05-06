@@ -60,7 +60,12 @@ let Newlist = () => {
                             <strong>{todo.title}</strong>
                             <p><cite>{todo.description}</cite></p>
                             <s>{todo.summary}</s>``
-                                <button onClick={(e) => dispatch({type:'DEL' ,pay:todo.id})}>&times;</button>
+                                <button onClick={(e) => { 
+                            const confirmed = window.confirm('Are you sure you want to delete');
+                            if (confirmed) {
+                                dispatch({type:'DEL' ,pay:todo.id}) 
+                            }
+                            }}>&times;</button>
                           
                         </li>
                     ))
