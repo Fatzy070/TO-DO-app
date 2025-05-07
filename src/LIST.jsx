@@ -1,4 +1,4 @@
-import { useState , useReducer } from "react";
+import { useState , useReducer , useEffect } from "react";
 import './CSS/LIST.css'
 
 let initialState = [];
@@ -15,10 +15,19 @@ let todoReducer = (state , action) => {
 }
 
 let Newlist = () => {
-    const [state , dispatch] = useReducer(todoReducer , initialState)
+    const [state , dispatch] = useReducer(todoReducer , [] , () => {
+        const saved = localStorage.getItem("myTodos");
+        return saved ? JSON.parse(saved) : [];
+    })
     const [title , setTitle] = useState ('')
     const [description , setDescription] = useState ('')
     const [summary , setSummary] = useState('')
+
+   
+
+        useEffect(() => {
+            localStorage.setItem("myTodos" , JSON.stringify(state));
+        },[state])
 
     let submit = (e) => {
         e.preventDefault()
@@ -53,7 +62,7 @@ let Newlist = () => {
             <button type="submit"> ADD TO-DO</button>
             </div>
             </form>
-            <ol>
+            <ol>    
                 {
                     state.map((todo) => (
                         <li key={todo.id}>
