@@ -49,7 +49,7 @@ let Newlist = () => {
 
     return (
     <main>
-            <h2>MY TO-DO APP</h2>
+            <h2>TO-DO APP</h2>
             <form onSubmit={submit} >
             <input type="text" name="hwebhB" placeholder="ENTER TITLE" value={title} onChange={(e) => setTitle(e.target.value)} />
             <br />
